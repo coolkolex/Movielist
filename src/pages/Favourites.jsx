@@ -10,11 +10,9 @@ const Favourites = () => {
       <div className="favourites">
         <h2>Your Favourites</h2>
         <div className="movies-grid">
-          {favourites.map((movie) =>
-            movie.title.toLowerCase().includes(searchQuery.toLowerCase()) ? (
-              <MovieCard key={movie.id} movie={movie} />
-            ) : null
-          )}
+          {favourites.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
         </div>
       </div>
     );

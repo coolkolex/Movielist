@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext} from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 const MovieContext = createContext();
 
@@ -19,25 +19,27 @@ export const MovieProvider = ({ children }) => {
   }, [favourites]);
 
   const addFavourite = (movie) => {
-    setFavourites((prev) => {
-      if (prev.some((m) => m.id === movie.id)) return prev;
-      return [...prev, movie];
-    });
+    setFavourites((prev) => [...prev, movie]);
   };
 
   const removeFavourite = (movieId) => {
-    setFavourites((prev) =>
-      prev.filter((movie) => movie.id !== movieId)
-    );
+    setFavourites((prev) => prev.filter((movie) => movie.id !== movieId));
   };
 
   const isFavourite = (movieId) => {
     return favourites.some((movie) => movie.id === movieId);
   };
 
+const value = {
+  favourites,
+  addFavourite,
+  removeFavourite,
+  isFavourite,
+};
+
   return (
     <MovieContext.Provider
-      value={{ favourites, addFavourite, removeFavourite, isFavourite }}
+      value={value}
     >
       {children}
     </MovieContext.Provider>
